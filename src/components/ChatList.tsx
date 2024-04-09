@@ -1,40 +1,40 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { FC } from 'react';
 
-import ImageIcon from '@mui/icons-material/Image';
-import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Chat from './Chat';
 
-const Chat = ({ chat }) => {
-  const { chatId } = useParams();
-  const navigate = useNavigate();
+import { ChatType } from '@/types/Chat';
+
+interface ChatListProps {
+  chats: ChatType[];
+}
+
+const ChatList: FC<ChatListProps> = ({ chats }) => {
+  if (!chats.length) {
+    return (
+      <p>
+        <i>No chats</i>
+      </p>
+    );
+  }
 
   return (
-    <ListItemButton
-      selected={chat.id === Number(chatId)}
-      onClick={() => navigate('/chats/' + chat.id)}
+    <Box
+      component='aside'
+      sx={{ p: 1, height: '100vh', width: '100%', bgcolor: 'grey.900' }}
     >
-      <ListItemAvatar>
-        <Avatar>
-          <ImageIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText primary={chat.title} secondary={chat.last_message} />
-    </ListItemButton>
-  );
-};
-
-const ChatList = ({ chats }) => {
-  return (
-    <aside>
-      <List sx={{ borderRight: '1px solid #000' }} disablePadding>
-        {chats.map(chat => (
+      <Stack direction='row'>
+        <Typography variant='h6'>Chats</Typography>
+      </Stack>
+      <List>
+        {chats.map((chat: ChatType) => (
           <Chat key={chat.id} chat={chat} />
         ))}
       </List>
-    </aside>
+    </Box>
   );
 };
 

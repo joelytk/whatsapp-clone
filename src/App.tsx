@@ -1,3 +1,5 @@
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   createBrowserRouter,
   Navigate,
@@ -8,13 +10,19 @@ import Home, { homeLoader } from '@/pages/Home';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound';
 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark'
+  }
+});
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Navigate to='chats' replace />
   },
   {
-    path: '/chats/:chatId',
+    path: '/chats',
     element: <Home />,
     errorElement: <NotFound />,
     loader: homeLoader
@@ -26,7 +34,12 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 };
 
 export default App;
