@@ -6,7 +6,8 @@ import {
   RouterProvider
 } from 'react-router-dom';
 
-import Home, { homeLoader } from '@/pages/Home';
+import RootLayout, { rootLoader } from '@/layouts/RootLayout';
+import ChatRoom, { chatRoomLoader } from '@/pages/ChatRoom';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound';
 
@@ -23,9 +24,18 @@ const router = createBrowserRouter([
   },
   {
     path: '/chats',
-    element: <Home />,
+    element: <RootLayout />,
     errorElement: <NotFound />,
-    loader: homeLoader
+    loader: rootLoader,
+    children: [
+      {
+        path: ':chatId',
+        element: <ChatRoom />,
+        errorElement: <NotFound />,
+        loader: chatRoomLoader
+        // action: chatRoomAction
+      }
+    ]
   },
   {
     path: 'login',

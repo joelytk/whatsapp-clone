@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import ImageIcon from '@mui/icons-material/Image';
 import Avatar from '@mui/material/Avatar';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -23,9 +22,7 @@ const Chat: FC<ChatProps> = ({ chat }) => {
       onClick={() => navigate('/chats/' + chat.id)}
     >
       <ListItemAvatar>
-        <Avatar>
-          <ImageIcon />
-        </Avatar>
+        <Avatar alt={chat.title} src={chat.image_url} />
       </ListItemAvatar>
       <ListItemText primary={chat.title} secondary={chat.last_message} />
     </ListItemButton>

@@ -15,9 +15,9 @@ interface ChatListProps {
 const ChatList: FC<ChatListProps> = ({ chats }) => {
   if (!chats.length) {
     return (
-      <p>
-        <i>No chats</i>
-      </p>
+      <Typography>
+        <em>No chats</em>
+      </Typography>
     );
   }
 

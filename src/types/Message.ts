@@ -1,5 +1,7 @@
 export type MessageType = {
-  id: number;
-  created_at: string;
+  id?: number;
+  chat_id: number;
+  user_id: number;
   message: string;
+  created_at?: string;
 };
