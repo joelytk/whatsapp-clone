@@ -1,26 +1,29 @@
 import { Outlet, useLoaderData, useParams } from 'react-router-dom';
 
 import { ChatList } from '@/components';
-import { fetchChats } from '@/services/chatsService';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { fetchChats } from '@/services/chatsService';
+import { fetchUserById } from '@/services/userService';
+
 export const rootLoader = async () => {
+  const user = await fetchUserById(2);
   const chats = await fetchChats();
-  return { chats };
+  return { user, chats };
 };
 
 const RootLayout = () => {
-  const { chats } = useLoaderData();
+  const { user, chats } = useLoaderData();
   const { chatId } = useParams();
 
   return (
-    <Grid container sx={{ minHeight: '100vh' }}>
+    <Grid container sx={{ height: '100vh' }}>
       <Grid item xs={12} sm={4} lg={3}>
         <Stack direction='row'>
-          <ChatList chats={chats} />
+          <ChatList user={user} chats={chats} />
           <Divider orientation='vertical' flexItem />
         </Stack>
       </Grid>

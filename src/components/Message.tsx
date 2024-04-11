@@ -25,14 +25,15 @@ const Message: FC<MessageProps> = ({ message }) => {
       /> */}
       <Box
         sx={{
-          p: 1,
+          px: 1,
+          py: 0.5,
           mb: 1,
-          borderRadius: 2,
-          bgcolor: isCurrentUser ? 'primary.dark' : 'grey.800'
+          borderRadius: 1.5,
+          bgcolor: isCurrentUser ? 'success.dark' : 'grey.800'
         }}
       >
         {/* <p>{message.name}</p> */}
-        <Typography sx={{ fontSize: '0.8rem' }}>{message.message}</Typography>
+        <Typography sx={{ fontSize: '0.95rem' }}>{message.message}</Typography>
       </Box>
     </Stack>
   );

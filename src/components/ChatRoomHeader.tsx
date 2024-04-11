@@ -16,7 +16,7 @@ const ChatRoomHeader: FC<ChatRoomHeaderProps> = ({ chat }) => {
   return (
     <AppBar position='static' sx={{ boxShadow: 'none' }}>
       <Toolbar sx={{ px: 2 }} disableGutters>
-        <Avatar sx={{ mr: 1 }} alt={chat.title} src={chat.image_url} />
+        <Avatar sx={{ mr: 2 }} alt={chat.title} src={chat.image_url} />
         <Box>
           <Typography variant='subtitle1' sx={{ fontWeight: 500 }}>
             {chat.title}

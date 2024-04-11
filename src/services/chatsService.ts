@@ -2,7 +2,10 @@ import supabase from '@/config/supabase';
 import { ChatType } from '@/types/Chat';
 
 export const fetchChats = async () => {
-  const { data } = await supabase.from('chats').select();
+  const { data } = await supabase
+    .from('chats')
+    .select()
+    .order('created_at', { ascending: false });
   return data;
 };
 
