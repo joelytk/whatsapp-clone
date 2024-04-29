@@ -1,25 +1,26 @@
-import { FC } from 'react';
-
+import AddCommentIcon from '@mui/icons-material/AddComment';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
-import { UserType } from '@/types/User';
-
-interface ChatListHeaderProps {
-  user: UserType;
-}
-
-const ChatListHeader: FC<ChatListHeaderProps> = ({ user }) => {
+const ChatListHeader = () => {
   return (
     <AppBar position='static' sx={{ boxShadow: 'none' }}>
       <Toolbar sx={{ px: 2, justifyContent: 'space-between' }} disableGutters>
-        <Avatar sx={{ mr: 2 }} alt={user?.name} src={user?.image_url} />
-        <IconButton>
-          <MoreVertIcon />
-        </IconButton>
+        <Typography component='h1' variant='h6'>
+          Chats
+        </Typography>
+        <Stack direction='row' spacing={1}>
+          <IconButton>
+            <AddCommentIcon />
+          </IconButton>
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        </Stack>
       </Toolbar>
     </AppBar>
   );

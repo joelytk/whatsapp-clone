@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: <Navigate to='chats' replace />
   },
   {
-    path: '/chats',
+    path: 'chats',
     element: <RootLayout />,
     errorElement: <NotFound />,
     loader: rootLoader,

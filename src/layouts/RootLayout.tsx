@@ -7,10 +7,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { fetchChats } from '@/services/chatsService';
-import { fetchUserById } from '@/services/userService';
+import { getUser } from '@/services/userService';
 
 export const rootLoader = async () => {
-  const user = await fetchUserById(2);
+  const { data: user } = await getUser();
   const chats = await fetchChats();
   return { user, chats };
 };
