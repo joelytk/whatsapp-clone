@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
@@ -8,25 +7,24 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { ChatType } from '@/types/Chat';
 
-interface ChatProps {
-  chat: ChatType;
-}
+const Chat = ({ chat }: { chat: ChatType }) => {
+	const navigate = useNavigate();
+	const { chatId } = useParams();
 
-const Chat: FC<ChatProps> = ({ chat }) => {
-  const { chatId } = useParams();
-  const navigate = useNavigate();
-
-  return (
-    <ListItemButton
-      selected={chat.id === Number(chatId)}
-      onClick={() => navigate('/chats/' + chat.id)}
-    >
-      <ListItemAvatar>
-        <Avatar alt={chat.title} src={chat.image_url} />
-      </ListItemAvatar>
-      <ListItemText primary={chat.title} secondary={chat.last_message} />
-    </ListItemButton>
-  );
+	return (
+		<ListItemButton
+			selected={chat.id === Number(chatId)}
+			onClick={() => navigate('/chats/' + chat.id)}
+			sx={{
+				bgcolor: chat.id === Number(chatId) ? 'action.hover' : 'transparent'
+			}}
+		>
+			<ListItemAvatar>
+				<Avatar alt={chat.title} src={chat.image_url} />
+			</ListItemAvatar>
+			<ListItemText primary={chat.title} secondary={chat.last_message} />
+		</ListItemButton>
+	);
 };
 
 export default Chat;
