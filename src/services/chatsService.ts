@@ -1,4 +1,4 @@
-import supabase from '@/config/supabase';
+import supabase from '@/lib/supabaseClient';
 import { ChatType } from '@/types/Chat';
 
 export const fetchChats = async () => {

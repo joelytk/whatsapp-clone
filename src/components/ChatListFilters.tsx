@@ -9,7 +9,7 @@ const ChatListFilters = () => {
 	const [activeFilter, setActiveFilter] = useState<string>('All');
 
 	return (
-		<Stack direction="row" spacing={1} sx={{ px: 2, pt: 0.25, pb: 1 }}>
+		<Stack direction="row" spacing={1} px={2} pt={0.25} pb={1}>
 			{filters.map(filter => (
 				<Chip
 					key={filter}

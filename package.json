@@ -22,13 +22,15 @@
 		"@mui/icons-material": "^7.3.4",
 		"@mui/material": "^7.3.4",
 		"@supabase/supabase-js": "^2.75.0",
+		"date-fns": "^4.1.0",
 		"emoji-mart": "^5.6.0",
 		"jotai": "^2.15.0",
 		"js-cookie": "^3.0.5",
 		"mui-tel-input": "^5.1.2",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
-		"react-router-dom": "^7.9.4"
+		"react-router-dom": "^7.9.4",
+		"vitest": "^3.2.4"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",

@@ -52,7 +52,7 @@ const App = () => {
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<Provider>
-				<CssBaseline />
+				<CssBaseline enableColorScheme />
 				<RouterProvider router={router} />
 			</Provider>
 		</ThemeProvider>

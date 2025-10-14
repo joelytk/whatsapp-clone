@@ -29,7 +29,9 @@ const NavItem = ({ title, icons }: { title: string; icons: { active: ReactNode; 
 			<IconButton
 				onClick={() => setActiveNavItem(title)}
 				sx={{
-					bgcolor: activeNavItem === title ? 'action.hover' : 'transparent'
+					bgcolor: activeNavItem === title ? 'action.hover' : 'transparent',
+					width: 40,
+					height: 40
 				}}
 			>
 				{activeNavItem === title ? icons.active : icons.inactive}
@@ -48,9 +50,7 @@ const Navbar = () => {
 					height: '100%',
 					flexDirection: 'column',
 					justifyContent: 'space-between',
-					bgcolor: 'grey.900',
-					borderRight: 1,
-					borderRightColor: 'divider'
+					bgcolor: 'grey.900'
 				}}
 				disableGutters
 			>

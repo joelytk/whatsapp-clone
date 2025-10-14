@@ -9,16 +9,8 @@ const Message = ({ message }: { message: MessageType }) => {
 
 	return (
 		<Stack direction="row" justifyContent={isCurrentUser ? 'flex-end' : 'flex-start'}>
-			<Box
-				sx={{
-					px: 1,
-					py: 0.5,
-					mb: 1,
-					borderRadius: 1.5,
-					bgcolor: isCurrentUser ? 'success.dark' : 'grey.800'
-				}}
-			>
-				<Typography sx={{ fontSize: '0.95rem' }}>{message.message}</Typography>
+			<Box px={1} py={0.5} mb={1} borderRadius={1.5} bgcolor={isCurrentUser ? 'success.dark' : 'grey.800'}>
+				<Typography fontSize="0.95rem">{message.message}</Typography>
 			</Box>
 		</Stack>
 	);

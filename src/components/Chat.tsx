@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
+import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -12,18 +13,23 @@ const Chat = ({ chat }: { chat: ChatType }) => {
 	const { chatId } = useParams();
 
 	return (
-		<ListItemButton
-			selected={chat.id === Number(chatId)}
-			onClick={() => navigate('/chats/' + chat.id)}
-			sx={{
-				bgcolor: chat.id === Number(chatId) ? 'action.hover' : 'transparent'
-			}}
-		>
-			<ListItemAvatar>
-				<Avatar alt={chat.title} src={chat.image_url} />
-			</ListItemAvatar>
-			<ListItemText primary={chat.title} secondary={chat.last_message} />
-		</ListItemButton>
+		<ListItem sx={{ py: 0, pb: 0.5 }}>
+			<ListItemButton
+				onClick={() => navigate('/chats/' + chat.id)}
+				sx={{
+					borderRadius: 3,
+					bgcolor: chat.id === Number(chatId) ? 'action.selected' : 'transparent',
+					'&:hover': {
+						bgcolor: 'action.hover'
+					}
+				}}
+			>
+				<ListItemAvatar>
+					<Avatar src={chat.image_url} />
+				</ListItemAvatar>
+				<ListItemText primary={chat.title} secondary={chat.last_message} />
+			</ListItemButton>
+		</ListItem>
 	);
 };
 
