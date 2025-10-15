@@ -1,50 +1,29 @@
-import { MuiTelInput } from 'mui-tel-input';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
 
-import { Input } from '@/components';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Button from '@mui/material/Button';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { MuiTelInput } from 'mui-tel-input';
 
-import { signInWithOtp, verifyOtp } from '@/services/authService';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+
+import { useAuth } from '@/hooks/useAuth';
 
 const Login = () => {
-	const navigate = useNavigate();
-	const [phone, setPhone] = useState('');
-	const [showOtpField, setShowOtpField] = useState(false);
-	const [token, setToken] = useState('');
+	const [phone, setPhone] = useState<string>('');
+	const [otp, setOtp] = useState<string>('');
+	const [step, setStep] = useState<'phone' | 'otp'>('phone');
+	const { signInWithPhone, verifyOtp } = useAuth();
 
-	const handleSubmit = async e => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 
-		if (!showOtpField) {
-			try {
-				const { data, error } = await signInWithOtp(phone);
-
-				if (error) {
-					throw error;
-				} else {
-					console.log(data);
-					setShowOtpField(true);
-				}
-			} catch (error) {
-				console.error({ error });
-			}
+		if (step === 'phone') {
+			await signInWithPhone(phone);
+			setStep('otp');
 		} else {
-			try {
-				const { session, error } = await verifyOtp(phone, token);
-
-				if (error) {
-					throw error;
-				} else {
-					console.log(session);
-					navigate('chats');
-				}
-			} catch (error) {
-				console.error({ error });
-			}
+			await verifyOtp(phone, otp);
 		}
 	};
 
@@ -56,12 +35,7 @@ const Login = () => {
 					Welcome to WhatsApp
 				</Typography>
 				<Stack component="form" alignItems="center" onSubmit={handleSubmit}>
-					{showOtpField ? (
-						<>
-							<Typography mb={2}>Enter SMS code</Typography>
-							<Input type="password" name="token" style={{ mb: 6 }} value={token} onChange={setToken} required />
-						</>
-					) : (
+					{step === 'phone' ? (
 						<>
 							<Typography mb={1}>Enter phone number</Typography>
 							<MuiTelInput
@@ -76,9 +50,21 @@ const Login = () => {
 								}}
 							/>
 						</>
+					) : (
+						<>
+							<Typography mb={1}>Enter SMS code</Typography>
+							<OutlinedInput
+								type="password"
+								name="token"
+								sx={{ mb: 6 }}
+								value={otp}
+								onChange={e => setOtp(e.target.value)}
+								required
+							/>
+						</>
 					)}
 					<Button type="submit" color="primary" variant="contained" sx={{ borderRadius: 6, width: 200 }}>
-						{showOtpField ? 'Done' : 'Send'}
+						{step === 'phone' ? 'Send' : 'Verify'} OTP
 					</Button>
 				</Stack>
 			</Stack>

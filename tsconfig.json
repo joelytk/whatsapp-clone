@@ -26,10 +26,14 @@
 			"@/assets/*": ["src/assets/*"],
 			"@/atoms/*": ["src/atoms/*"],
 			"@/components/*": ["src/components/*"],
+			"@/contexts/*": ["src/contexts/*"],
+			"@/hooks/*": ["src/hooks/*"],
 			"@/lib/*": ["src/lib/*"],
 			"@/layouts/*": ["src/layouts/*"],
 			"@/pages/*": ["src/pages/*"],
-			"@/services/*": ["src/services/*"]
+			"@/routes/*": ["src/routes/*"],
+			"@/services/*": ["src/services/*"],
+			"@/themes/*": ["src/themes/*"]
 		}
 	},
 	"include": ["src"],

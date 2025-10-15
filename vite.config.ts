@@ -11,10 +11,14 @@ export default defineConfig({
 			'@/assets': path.resolve(__dirname, './src/assets'),
 			'@/atoms': path.resolve(__dirname, './src/atoms'),
 			'@/components': path.resolve(__dirname, './src/components'),
+			'@/contexts': path.resolve(__dirname, './src/contexts'),
+			'@/hooks': path.resolve(__dirname, './src/hooks'),
 			'@/lib': path.resolve(__dirname, './src/lib'),
 			'@/layouts': path.resolve(__dirname, './src/layouts'),
 			'@/pages': path.resolve(__dirname, './src/pages'),
-			'@/services': path.resolve(__dirname, './src/services')
+			'@/routes': path.resolve(__dirname, './src/routes'),
+			'@/services': path.resolve(__dirname, './src/services'),
+			'@/themes': path.resolve(__dirname, './src/themes')
 		}
 	},
 	server: {
